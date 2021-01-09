@@ -22,10 +22,21 @@
     let lastY = 0;
 
     function draw(e) {
-      console.log(e);
+      //console.log(e);
+      if (!isDrawing) return //stop the fn from running when they are not moused
+      ctx.beginPath()
+      ctx.moveTo(lastX, lastY);
+      ctx.lineTo(e.offsetX, e.offsetY);
+      ctx.stroke();
+
     }
 
     canvas.addEventListener('mousemove', draw);
+    canvas.addEventListener('mousedown', () => isDrawing = true);
+    canvas.addEventListener('mousedup', () => isDrawing = false);
+    canvas.addEventListener('mousedout', () => isDrawing = false);
+
+
 
   </script>
 
